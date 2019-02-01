@@ -1,6 +1,24 @@
+import pygame, sys
+
 '''
 CSC290 Group Project
-Connect Four
+C4: Four In A Row
 University of Toronto Mississauga
 '''
 
+class GameBoard:
+    def __init__ (self):
+        board = []
+    
+        
+
+if __name__ == '__main__':
+    pygame.init()
+    size = width, height = 640, 480
+    screen = pygame.display.set_mode(size)
+    
+
+    while True:
+        pygame.display.flip()
+
+    
