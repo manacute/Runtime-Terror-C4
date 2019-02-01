@@ -10,7 +10,20 @@ class GameBoard:
     def __init__ (self):
         board = []
     
-        
+   
+    def doesMoveWinGame(m: Move) -> bool:
+        winrar = False
+                
+        return winrar
+    
+
+class Move:
+    def __init__ (self, x, y):
+        self.x = x
+        self.y = y
+
+
+
 
 if __name__ == '__main__':
     pygame.init()
