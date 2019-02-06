@@ -11,39 +11,49 @@ class Move:
         self.x = x
         self.y = y
 
-class GameBoard:
+class BoardModel:
     def __init__(self):
+        pygame.init()
+        screen = pygame.display.set_mode((800, 600))
+        screen.fill((255, 255, 255))
         board = []
         moves = []
-        
-    def performMove(x, y) -> null:
-        pass
-        
-    def doesMoveWinGame(m: Move) -> bool:
-        winrar = False
-        return winrar
+            
+    def view_tick(self) -> None:
+        pygame.display.flip()    
 
-    def ControllerTick() -> int:
+class MoveController:
+    def __init__(self, board: BoardModel):
+        self.board = board
+    
+    def perform_move(self, x: int) -> None:
+        pass  
+    
+    def move_is_valid(self, m: Move) -> bool:
+        
+        return False
+
+    def move_wins_game(self, m: Move) -> bool:
+        count = 0
+        return False
+
+    def controller_tick(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return 0
+                pygame.quit()
+                sys.exit()
             
-            return 1
-    
-    def ViewTick() -> null:
-        pygame.display.flip()    
+
+
     
 if __name__ == '__main__':
-    pygame.init()
-    screen = pygame.display.set_mode((800, 600))
-    screen.fill((255, 255, 255))
+    
+    board = BoardModel()
+    controller = MoveController(board)
     
     filledCross = pygame.image.load("graphics/baseline_cancel_black_48dp.png")
     emptyCross = pygame.image.load("graphics/outline_cancel_black_48dp.png")        
-    board = GameBoard()
+
     
     while True:
-        if board.ControllerTick() == 0:
-            pygame.quit()
-            sys.exit()
-        board.ViewTick()
+        controller.controller_tick()
