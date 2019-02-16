@@ -47,9 +47,8 @@ class BoardModel:
         j = 0
         while (j < 7):
             while (i < 6):
-                if i == 0:
-                    board[j][i] = Piece() #This represents an empty place on the board.
-                    i += 1
+                board[j][i] = Piece() #This represents an empty place on the board.
+                i += 1
             j += 1
 			
 			
