@@ -14,13 +14,10 @@ class Piece:
     def __init__(self, num=0: int):
         self._player_num = num
 
-    def get_num(self) -> int:
-        return self._player_num
-
     def is_empty(self) -> bool:
         return self._player_num == 0 
 
-    def get_player(self) -> bool:
+    def get_player(self) -> int:
         return self._player_num
 
 
