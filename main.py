@@ -47,9 +47,9 @@ class BoardModel:
 
         #Initialize our board in format self._board[colum_position][row_position].
         self._board = [[], [], [], [], [], [], []]
-        i = 0
         j = 0
         while (j < 7):
+            i = 0
             while (i < 6):
                 self._board[j][i] = Piece() #This represents an empty place on the board.
                 i += 1
