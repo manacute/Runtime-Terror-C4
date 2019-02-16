@@ -32,8 +32,8 @@ class Move:
     def get_x(self):
         return self._x
 	
-	def get_y(self):
-		return self._y
+    def get_y(self):
+        return self._y
 
 class BoardModel:
     def __init__(self):
