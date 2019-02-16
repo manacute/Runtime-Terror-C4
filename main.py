@@ -6,10 +6,35 @@ C4: Four In A Row
 University of Toronto Mississauga
 '''
 
+class Piece:
+    '''Piece class to keep track of of each place on the board. On default the
+        player number is set to 0, which represents an unclaimed spot (this allows us 
+        to check if a current position of the board is empty safely).	
+    '''
+    def __init__(self, num=0: int):
+        self._player_num = num
+
+    def is_empty(self) -> bool:
+        return self._player_num == 0 
+
+    def get_player(self) -> int:
+        return self._player_num
+
+
 class Move:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, x, y, player_num):
+        self._x = x
+        self._y = y
+        self._player_num = player_num
+
+    def get_x(self):
+        return self._x
+	
+    def get_y(self):
+        return self._y
+
+    def get_player(self):
+        return self._player_num
 
     def get_x(self):
         '''Returns the x value of the move'''
@@ -24,18 +49,42 @@ class BoardModel:
         pygame.init()
         screen = pygame.display.set_mode((800, 600))
         screen.fill((255, 255, 255))
-        board = []
-        moves = []
-
+        #Initialize our board in format self._board[colum_position][row_position].
+        self._board = [[], [], [], [], [], [], []]
+        j = 0
+        while (j < 7):
+            i = 0
+            while (i < 6):
+                self._board[j][i] = Piece() #This represents an empty place on the board.
+                i += 1
+            j += 1
+			
+			
+        self._moves = []
+            
     def view_tick(self) -> None:
         pygame.display.flip()
+
+
+    def perform_move(self, m: Move) -> None:
+        self.add_move(m)
+        self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
+        self.update()
+	
+    def add_move(self, m: Move) -> None:
+        self._moves.add(m)
+
+    def update(self) -> None:
+        pass
+			    
+
 
 class MoveController:
     def __init__(self, board: BoardModel):
         self.board = board
 
     def perform_move(self, x: int) -> None:
-        pass
+        self.board.perform_move(m)
 
     def move_is_valid(self, move: Move) -> bool:
         '''
