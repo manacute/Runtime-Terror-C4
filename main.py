@@ -29,8 +29,8 @@ class Move:
         self._x = x
         self._y = y
 
-	def get_x(self):
-		return self._x
+    def get_x(self):
+        return self._x
 	
 	def get_y(self):
 		return self._y
@@ -41,16 +41,16 @@ class BoardModel:
         screen = pygame.display.set_mode((800, 600))
         screen.fill((255, 255, 255))
 
-		#Initialize our board in format self._board[colum_position][row_position].
-		self._board = [[], [], [], [], [], [], []]
+        #Initialize our board in format self._board[colum_position][row_position].
+        self._board = [[], [], [], [], [], [], []]
         i = 0
-		j = 0
-		while (j < 7):
-			while (i < 6):
-				if i == 0:
-					board[j][i] = Piece() #This represents an empty place on the board.
-					i += 1
-			j += 1
+        j = 0
+        while (j < 7):
+            while (i < 6):
+                if i == 0:
+                    board[j][i] = Piece() #This represents an empty place on the board.
+                    i += 1
+            j += 1
 			
 			
         self._moves = []
@@ -59,16 +59,16 @@ class BoardModel:
         pygame.display.flip()
 
 
-	def perform_move(self, m: Move) -> None:
-		self.add_move(m)
-		self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
-		self.update()
+    def perform_move(self, m: Move) -> None:
+        self.add_move(m)
+        self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
+        self.update()
 	
-	def add_move(self, m: Move) -> None:
-		self._moves.add(m)
+    def add_move(self, m: Move) -> None:
+        self._moves.add(m)
 
-	def update(self) -> None:
-		pass
+    def update(self) -> None:
+        pass
 			    
 
 class MoveController:
