@@ -148,7 +148,7 @@ class MoveController:
     def move_wins_game(self, m: Move) -> bool:
         '''
         Pre: m is a move that has been made on the BoardModel
-        Post: Return True iff there are four tokens in a row in the BoardModel
+        Post: Return True iff there are four tokens in a row of the same type in the BoardModel
         '''
         
         x = m.get_x()
@@ -159,9 +159,20 @@ class MoveController:
         reverse = [1, -1]
         
         for axes in directions:
-            pass
-        
-        
+            tokens = 1
+            for magnitude in reverse:
+                displacement = magnitude
+                while abs(displacement) <= 3:
+                    check_x = displacement * axes[0] + x
+                    check_y = displacement * axes[1] + y
+                    if ((check_x <= 6) and (check_x >= 0) and (check_y <= 5) and (check_y >= 0)):
+                        if self._model.get_board()[check_x][check_y].get_player() == player_num:
+                            tokens += 1
+                        else:
+                            displacement = 3 
+                        if tokens == 4:
+                            return True
+                    displacement = (abs(i) + 1) * magnitude
         return False
     
 
