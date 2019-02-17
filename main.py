@@ -65,7 +65,7 @@ class MenuModel:
         help_text = my_font.render("HELP", True, BLUE)
         quit_text = my_font.render("QUIT", True, BLUE)
 
-        
+
         pygame.draw.rect(screen, RED, start_button)
         pygame.draw.rect(screen, RED, help_button)
         pygame.draw.rect(screen, RED, quit_button)
@@ -74,7 +74,7 @@ class MenuModel:
         screen.blit(start_text, (405, 135))
         screen.blit(help_text, (405, 335))
         screen.blit(quit_text, (405, 535))
-        
+
         pygame.display.update()
 
         flag = True
@@ -92,7 +92,7 @@ class MenuModel:
                     if start_button.collidepoint(mouse_position):
                         GAME_TYPE = "start"
                         flag = False
-                    
+
                     elif help_button.collidepoint(mouse_position):
                         GAME_TYPE = "help"
                         flag = False
@@ -100,7 +100,69 @@ class MenuModel:
                     elif quit_button.collidepoint(mouse_position):
                         pygame.quit()
                         sys.exit()
-        
+@@ -0,0 +1,62 @@
+class HelpModel:
+    def __init__(self):
+        pygame.init()
+        pygame.font.init()
+        h1 = pygame.font.SysFont('Arial', 40)
+        p = pygame.font.SysFont('Arial Light', 30)
+
+        screen = pygame.display.set_mode((900, 700))
+        pygame.display.set_caption('4-in-a-row - Instructions/Help')
+
+        # --- Variables --- #
+        BLUE = (0, 0, 255)
+        RED = (255, 0, 0)
+        WHITE = (255, 255, 255)
+        YELLOW = (255, 255, 0)
+        BLACK = (0,0,0)
+
+
+        header = "4-in-a-row Instructions"
+        body1 = "Welcome to 4-in-a-row! Your goal is to connect four of your"
+        body2 = "checkers in a row while preventing your opponent from doing"
+        body3 = "the same. First to get four in a row wins!"
+        body4 = "To place your checker, select the desired column."
+        body5 = "To undo/redo a move, use the controls at the top."
+
+        back_text = h1.render("BACK", True, BLUE)
+        instructions_header = h1.render(header, True, BLUE)
+        i1 = p.render(body1, True, BLACK)
+        i2 = p.render(body2, True, BLACK)
+        i3 = p.render(body3, True, BLACK)
+        i4 = p.render(body4, True, BLACK)
+        i5 = p.render(body5, True, BLACK)
+        back_button = pygame.Rect(350, 500, 200, 100)
+        help = True
+        # --- Placing everything on the screen --- #
+        screen.fill(WHITE)
+        pygame.draw.rect(screen, RED, back_button)
+        screen.blit(instructions_header, (290, 100))
+        screen.blit(i1, (155, 200))
+        screen.blit(i2, (140, 240))
+        screen.blit(i3, (245, 280))
+        screen.blit(i4, (200, 350))
+        screen.blit(i5, (200, 390))
+        screen.blit(back_text, (405, 540))
+
+        pygame.display.update()
+
+        # --- Page functionality --- #
+
+        while help:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_position = event.pos
+                    global GAME_TYPE
+
+                    if back_button.collidepoint(mouse_position):
+                        MenuModel()
+                        help = False
 
 class BoardModel:
     def __init__(self):
@@ -167,7 +229,7 @@ class BoardModel:
 
     def add_move(self, m: Move) -> None:
         self._moves.add(m)
-        
+
     def get_board(self) -> list:
         return(self._board)
 
@@ -215,14 +277,14 @@ class MoveController:
         Pre: m is a move that has been made on the BoardModel
         Post: Return True iff there are four tokens in a row of the same type in the BoardModel
         '''
-        
+
         x = m.get_x()
         y = m.get_y()
         player_num = m.get_player()
-        
+
         directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
         reverse = [1, -1]
-        
+
         for axes in directions:
             tokens = 1
             for magnitude in reverse:
@@ -234,12 +296,12 @@ class MoveController:
                         if self._model.get_board()[check_x][check_y].get_player() == player_num:
                             tokens += 1
                         else:
-                            displacement = 3 
+                            displacement = 3
                         if tokens == 4:
                             return True
                     displacement = (abs(i) + 1) * magnitude
         return False
-    
+
 
     def controller_tick(self) -> None:
         for event in pygame.event.get():
@@ -257,7 +319,7 @@ if __name__ == '__main__':
         board = BoardModel()
         controller = MoveController(board)
     elif (GAME_TYPE == "help"):
-        pass # call help menu
+        help = HelpModel()
 
     filledCross = pygame.image.load("graphics/baseline_cancel_black_48dp.png")
     emptyCross = pygame.image.load("graphics/outline_cancel_black_48dp.png")
