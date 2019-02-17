@@ -27,12 +27,6 @@ class Move:
         self._y = y
         self._player_num = player_num
 
-    def get_x(self):
-        return self._x
-	
-    def get_y(self):
-        return self._y
-
     def get_player(self):
         return self._player_num
 
@@ -43,6 +37,7 @@ class Move:
     def get_y(self):
         '''Returns the y value of the move'''
         return self.y
+
 
 class BoardModel:
     def __init__(self):
@@ -117,10 +112,10 @@ class BoardModel:
 
 class MoveController:
     def __init__(self, board: BoardModel):
-        self.board = board
+        self._board = board
 
     def perform_move(self, x: int) -> None:
-        self.board.perform_move(m)
+        self._board.perform_move(m)
 
     def move_is_valid(self, move: Move) -> bool:
         '''
@@ -141,15 +136,30 @@ class MoveController:
             return False
 
         # Check that location is empty - the column should have space
-        if (self.board[move.get_y-1][5] == 0):
+        if (self._board[move.get_y-1][5] == 0):
             return True
 
         # Otherwise return False
         return False
 
     def move_wins_game(self, m: Move) -> bool:
-        count = 0
+        '''
+        Pre: m is a move that has been made on the BoardModel
+        Post: Return True iff there are four tokens in a row in the BoardModel
+        '''
+        
+        i = 0
+        x = m.get_x()
+        y = m.get_y()
+        
+        directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
+        
+        for axes in directions:
+            pass
+        
+        
         return False
+    
 
     def controller_tick(self) -> None:
         for event in pygame.event.get():
