@@ -32,11 +32,11 @@ class Move:
 
     def get_x(self):
         '''Returns the x value of the move'''
-        return self.x
+        return self._x
 
     def get_y(self):
         '''Returns the y value of the move'''
-        return self.y
+        return self._y
 
 
 class BoardModel:
@@ -104,6 +104,9 @@ class BoardModel:
 	
     def add_move(self, m: Move) -> None:
         self._moves.add(m)
+        
+    def get_board(self) -> list:
+        return(self._board)
 
     def update(self) -> None:
         pass
@@ -111,11 +114,11 @@ class BoardModel:
 
 
 class MoveController:
-    def __init__(self, board: BoardModel):
-        self._board = board
+    def __init__(self, model: BoardModel):
+        self._model = model
 
     def perform_move(self, x: int) -> None:
-        self._board.perform_move(m)
+        self._model.perform_move(m)
 
     def move_is_valid(self, move: Move) -> bool:
         '''
@@ -136,7 +139,7 @@ class MoveController:
             return False
 
         # Check that location is empty - the column should have space
-        if (self._board[move.get_y-1][5] == 0):
+        if (self._model[move.get_y-1][5] == 0):
             return True
 
         # Otherwise return False
@@ -148,11 +151,12 @@ class MoveController:
         Post: Return True iff there are four tokens in a row in the BoardModel
         '''
         
-        i = 0
         x = m.get_x()
         y = m.get_y()
+        player_num = m.get_player()
         
         directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
+        reverse = [1, -1]
         
         for axes in directions:
             pass
@@ -177,7 +181,6 @@ if __name__ == '__main__':
 
     filledCross = pygame.image.load("graphics/baseline_cancel_black_48dp.png")
     emptyCross = pygame.image.load("graphics/outline_cancel_black_48dp.png")
-
 
     while True:
         controller.controller_tick()
