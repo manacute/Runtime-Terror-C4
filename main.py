@@ -36,13 +36,6 @@ class Move:
     def get_player(self):
         return self._player_num
 
-    def get_x(self):
-        '''Returns the x value of the move'''
-        return self.x
-
-    def get_y(self):
-        '''Returns the y value of the move'''
-        return self.y
 
 class MenuModel:
     def __init__(self):
@@ -174,6 +167,9 @@ class BoardModel:
 
     def add_move(self, m: Move) -> None:
         self._moves.add(m)
+        
+    def get_board(self) -> list:
+        return(self._board)
 
     def update(self) -> None:
         pass
@@ -181,11 +177,11 @@ class BoardModel:
 
 
 class MoveController:
-    def __init__(self, board: BoardModel):
-        self.board = board
+    def __init__(self, model: BoardModel):
+        self._model = model
 
     def perform_move(self, x: int) -> None:
-        self.board.perform_move(m)
+        self._model.perform_move(m)
 
     def move_is_valid(self, move: Move) -> bool:
         '''
@@ -208,15 +204,42 @@ class MoveController:
             return False
 
         # Check that location is empty - the column should have space
-        if (self.board[move.get_y-1][5] == 0):
+        if (self._model[move.get_y-1][5] == 0):
             return True
 
         # Otherwise return False
         return False
 
     def move_wins_game(self, m: Move) -> bool:
-        count = 0
+        '''
+        Pre: m is a move that has been made on the BoardModel
+        Post: Return True iff there are four tokens in a row of the same type in the BoardModel
+        '''
+        
+        x = m.get_x()
+        y = m.get_y()
+        player_num = m.get_player()
+        
+        directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
+        reverse = [1, -1]
+        
+        for axes in directions:
+            tokens = 1
+            for magnitude in reverse:
+                displacement = magnitude
+                while abs(displacement) <= 3:
+                    check_x = displacement * axes[0] + x
+                    check_y = displacement * axes[1] + y
+                    if ((check_x <= 6) and (check_x >= 0) and (check_y <= 5) and (check_y >= 0)):
+                        if self._model.get_board()[check_x][check_y].get_player() == player_num:
+                            tokens += 1
+                        else:
+                            displacement = 3 
+                        if tokens == 4:
+                            return True
+                    displacement = (abs(i) + 1) * magnitude
         return False
+    
 
     def controller_tick(self) -> None:
         for event in pygame.event.get():
@@ -238,7 +261,6 @@ if __name__ == '__main__':
 
     filledCross = pygame.image.load("graphics/baseline_cancel_black_48dp.png")
     emptyCross = pygame.image.load("graphics/outline_cancel_black_48dp.png")
-
 
     while True:
         controller.controller_tick()
