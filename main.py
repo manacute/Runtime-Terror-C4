@@ -55,7 +55,7 @@ class BoardModel:
         while (j < 7):
             i = 0
             while (i < 6):
-                self._board[j][i] = Piece() #This represents an empty place on the board.
+                self._board[j].append(Piece()) #This represents an empty place on the board.
                 i += 1
             j += 1
 			
