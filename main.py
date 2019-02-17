@@ -11,7 +11,7 @@ class Piece:
         player number is set to 0, which represents an unclaimed spot (this allows us 
         to check if a current position of the board is empty safely).	
     '''
-    def __init__(self, num=0: int):
+    def __init__(self, num=0):
         self._player_num = num
 
     def is_empty(self) -> bool:
@@ -46,10 +46,23 @@ class Move:
 
 class BoardModel:
     def __init__(self):
+        
         pygame.init()
-        screen = pygame.display.set_mode((800, 600))
-        screen.fill((255, 255, 255))
-        #Initialize our board in format self._board[colum_position][row_position].
+
+        # Careating the display
+        screen = pygame.display.set_mode((900, 700))
+        pygame.display.set_caption('4-in-a-row')
+        
+        # Colour variables
+        BLUE = (0, 0, 255)
+        RED = (255, 0, 0)
+        WHITE = (255, 255, 255)
+        YELLOW = (255, 255, 0)
+
+        # Making the background white
+        screen.fill(WHITE)
+        
+        # Initialize our board in format self._board[column_position][row_position].
         self._board = [[], [], [], [], [], [], []]
         j = 0
         while (j < 7):
@@ -61,6 +74,29 @@ class BoardModel:
 			
 			
         self._moves = []
+        
+
+        # Creating the blue background of the board
+        pygame.draw.rect(screen,BLUE,(100,50,700,600))
+        pygame.display.update()
+
+        # Creating the circles for the tokens on the board
+        # 42 equal white circles arranged in 7 columns and 6 rows
+        num_of_columns = 0
+        position = [150, 100]
+        
+        while(num_of_columns != 7):
+            num_of_circles = 0
+            position[1] = 100
+            while (num_of_circles != 6): 
+                pygame.draw.circle(screen, WHITE, tuple(position), 40)
+                pygame.display.update()
+                num_of_circles += 1
+                position[1] = position[1] + 100
+            position[0] = position[0] + 100
+            num_of_columns = num_of_columns + 1
+            
+        
             
     def view_tick(self) -> None:
         pygame.display.flip()
