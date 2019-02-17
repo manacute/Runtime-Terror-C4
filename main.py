@@ -8,14 +8,14 @@ University of Toronto Mississauga
 
 class Piece:
     '''Piece class to keep track of of each place on the board. On default the
-        player number is set to 0, which represents an unclaimed spot (this allows us 
-        to check if a current position of the board is empty safely).	
+        player number is set to 0, which represents an unclaimed spot (this allows us
+        to check if a current position of the board is empty safely).
     '''
     def __init__(self, num=0):
         self._player_num = num
 
     def is_empty(self) -> bool:
-        return self._player_num == 0 
+        return self._player_num == 0
 
     def get_player(self) -> int:
         return self._player_num
@@ -29,7 +29,7 @@ class Move:
 
     def get_x(self):
         return self._x
-	
+
     def get_y(self):
         return self._y
 
@@ -46,13 +46,13 @@ class Move:
 
 class BoardModel:
     def __init__(self):
-        
+
         pygame.init()
 
         # Careating the display
         screen = pygame.display.set_mode((900, 700))
         pygame.display.set_caption('4-in-a-row')
-        
+
         # Colour variables
         BLUE = (0, 0, 255)
         RED = (255, 0, 0)
@@ -61,7 +61,7 @@ class BoardModel:
 
         # Making the background white
         screen.fill(WHITE)
-        
+
         # Initialize our board in format self._board[column_position][row_position].
         self._board = [[], [], [], [], [], [], []]
         j = 0
@@ -71,10 +71,10 @@ class BoardModel:
                 self._board[j].append(Piece()) #This represents an empty place on the board.
                 i += 1
             j += 1
-			
-			
+
+
         self._moves = []
-        
+
 
         # Creating the blue background of the board
         pygame.draw.rect(screen,BLUE,(100,50,700,600))
@@ -84,20 +84,20 @@ class BoardModel:
         # 42 equal white circles arranged in 7 columns and 6 rows
         num_of_columns = 0
         position = [150, 100]
-        
+
         while(num_of_columns != 7):
             num_of_circles = 0
             position[1] = 100
-            while (num_of_circles != 6): 
+            while (num_of_circles != 6):
                 pygame.draw.circle(screen, WHITE, tuple(position), 40)
                 pygame.display.update()
                 num_of_circles += 1
                 position[1] = position[1] + 100
             position[0] = position[0] + 100
             num_of_columns = num_of_columns + 1
-            
-        
-            
+
+
+
     def view_tick(self) -> None:
         pygame.display.flip()
 
@@ -106,13 +106,13 @@ class BoardModel:
         self.add_move(m)
         self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
         self.update()
-	
+
     def add_move(self, m: Move) -> None:
         self._moves.add(m)
 
     def update(self) -> None:
         pass
-			    
+
 
 
 class MoveController:
@@ -137,7 +137,9 @@ class MoveController:
         # A board has 7 columns (y) and 6 rows (x)
 
         # First check that the coordinates are valid
-        if ( (move.get_x > 6) or (move.get_x < 0) or (move.get_x > 7) or (move.get_x < 0) ):
+        x = move.get_x
+        y = move.get_y
+        if ( (x > 5) or (x < 0) or (y > 6) or (y < 0) ):
             return False
 
         # Check that location is empty - the column should have space
