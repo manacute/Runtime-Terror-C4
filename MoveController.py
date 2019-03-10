@@ -67,8 +67,3 @@ class MoveController:
                     displacement = (abs(i) + 1) * magnitude
         return False
 
-    def controller_tick(self) -> None:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
