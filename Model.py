@@ -3,8 +3,9 @@ class Model():
         self.done = False
         self.quit = False
         self.next_model = None
+        self.buttons = []
         self.persist = {}
-        
+                
     def startup(self, persistent):
         self.persist = persistant
         

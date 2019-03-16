@@ -1,5 +1,6 @@
 import pygame, sys
 from Model import Model
+from Button import Button
 
 class MenuModel(Model):
     def __init__(self):
@@ -11,38 +12,35 @@ class MenuModel(Model):
         
     def draw(self, screen):
 
-
         screen.fill(pygame.Color("white"))
 
         #Creates the 3 interactive buttons
-        self.start_button = pygame.Rect(350, 100, 200, 100)
-        self.help_button = pygame.Rect(350, 300, 200, 100)
-        self.quit_button = pygame.Rect(350, 500, 200, 100)
+        self.start_button = Button(350, 100, 200, 100, "START", 
+                       self.font, pygame.Color("blue"), pygame.Color("red"), 
+                       pygame.Color("pink"), screen)
+        self.help_button = Button(350, 300, 200, 100, "HELP", 
+                       self.font, pygame.Color("blue"), pygame.Color("red"), 
+                       pygame.Color("pink"), screen)
+        self.quit_button = Button(350, 500, 200, 100, "QUIT", 
+                       self.font, pygame.Color("blue"), pygame.Color("red"), 
+                       pygame.Color("pink"), screen)
 
-        start_text = self.font.render("START", True, pygame.Color("blue"))
-        help_text = self.font.render("HELP", True, pygame.Color("blue"))
-        quit_text = self.font.render("QUIT", True, pygame.Color("blue"))
-
-        pygame.draw.rect(screen, pygame.Color("red"), self.start_button)
-        pygame.draw.rect(screen, pygame.Color("red"), self.help_button)
-        pygame.draw.rect(screen, pygame.Color("red"), self.quit_button)
-
-        #Draws the text after drawing the rectangle so you can see the text
-        screen.blit(start_text, (405, 135))
-        screen.blit(help_text, (405, 335))
-        screen.blit(quit_text, (405, 535))
-
+        self.buttons.append(self.start_button)
+        self.buttons.append(self.help_button)
+        self.buttons.append(self.quit_button)
+        
+        for button in self.buttons:
+            button.draw()
 
     def get_event(self, event):
         if event.type == pygame.QUIT:
             self.quit = True
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_position = event.pos
-            if self.start_button.collidepoint(mouse_position):
+            if self.start_button.mouse_over():
                 self.next_model = "board"
                 self.done = True
-            elif self.help_button.collidepoint(mouse_position):
+            elif self.help_button.mouse_over():
                 self.next_model = "help"
                 self.done = True
-            elif self.quit_button.collidepoint(mouse_position):
+            elif self.quit_button.mouse_over():
                 self.quit = True
