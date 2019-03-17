@@ -6,7 +6,6 @@ from Model import Model
 class BoardModel(Model):
     def __init__(self):
         super(BoardModel, self).__init__()
-        player = 1
         pygame.display.set_caption('4-in-a-row')
 
         # Initialize our board in format self._board[column_position][row_position].
