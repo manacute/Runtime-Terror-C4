@@ -2,6 +2,7 @@ import pygame
 from Move import Move
 from Piece import Piece
 from Model import Model
+from Button import Button
 
 class BoardModel(Model):
     def __init__(self):
@@ -60,6 +61,12 @@ class BoardModel(Model):
             position[0] = position[0] + 100
 
         if self._winner != 0:
+            font = pygame.font.SysFont('Arial', 40)
+            button = Button(250, 250, 400, 200, "Player " + str(self._winner) + " has won!", 
+                   font, self.text_color, self.button_color0, 
+                   self.button_color0, self.button_outline, screen) 
+            button.draw()
+
     def game_over(self, winning_player):
         self._winner = winning_player
 
