@@ -8,12 +8,12 @@ class BoardModel(Model):
     def __init__(self):
         super(BoardModel, self).__init__()
         pygame.display.set_caption('4-in-a-row')
-        # Initialize our board in format self._board[column_position][row_position].  
+        # Initialize our board in format self._board[column_position][row_position].
         self._board = [[], [], [], [], [], [], []]
         self._moves = []
         self._winner = 0
         self.reset_board()
-        
+
     def reset_board(self):
         self._board = [[], [], [], [], [], [], []]
         self._moves = []
@@ -22,8 +22,8 @@ class BoardModel(Model):
         for j in range(7):
             for i in range(6):
                 self._board[j].append(Piece(0)) #This represents an empty place on the board.
-    
-        
+
+
     def perform_move(self, m: Move) -> None:
         self.add_move(m)
         self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
@@ -45,7 +45,7 @@ class BoardModel(Model):
         # 42 equal circles arranged in 7 columns and 6 rows
         position = [150, 600]
         board = self.get_board()
-        
+
         for column in board:
             position[1] = 600
             for row in column:
@@ -58,17 +58,20 @@ class BoardModel(Model):
                      pygame.draw.circle(screen, pygame.Color("Red"), tuple(position), 40)
                 position[1] = position[1] - 100
             position[0] = position[0] + 100
-            
-        
+
+
         if self._winner != 0:
             font = pygame.font.SysFont('Arial', 40)
             if self._winner == -1:
-                msg = "Stalemate! Nobody winss!"
+                msg = "Stalemate! Nobody wins!"
             else:
-                msg = "Player " + str(self._winner) + " has won!"
-            button = Button(250, 250, 400, 200, msg, 
-                   font, self.text_color, self.button_color0, 
-                   self.button_color0, self.button_outline, screen) 
+                if self._winner is 1:
+                    msg = "Player 2 has won!"
+                else:
+                    msg = "Player 1 has won!"
+            button = Button(250, 250, 400, 200, msg,
+                   font, self.text_color, self.button_color0,
+                   self.button_color0, self.button_outline, screen)
             button.draw()
 
     def game_over(self, winning_player):
@@ -77,7 +80,7 @@ class BoardModel(Model):
     def get_event(self, event, controller):
         if event.type == pygame.QUIT:
             self.quit = True
-            
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self._winner != 0:
                 self.next_model = "menu"
@@ -85,4 +88,3 @@ class BoardModel(Model):
                 self.reset_board()
             else:
                 controller.perform_move(event)
-            
