@@ -30,8 +30,8 @@ class HelpModel(Model):
     def draw(self, screen):
         screen.fill(pygame.Color("white"))
         self.button = Button(350, 500, 200, 100, "BACK", 
-               self.font, pygame.Color("blue"), pygame.Color("red"), 
-               pygame.Color("pink"), screen) 
+               self.font, self.text_color, self.button_color0, 
+               self.button_color1, self.button_outline, screen) 
         screen.blit(self.instructions_header, (290, 100))
         screen.blit(self.i1, (155, 200))
         screen.blit(self.i2, (140, 240))

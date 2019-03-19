@@ -16,14 +16,14 @@ class MenuModel(Model):
 
         #Creates the 3 interactive buttons
         self.start_button = Button(350, 100, 200, 100, "START", 
-                       self.font, pygame.Color("blue"), pygame.Color("red"), 
-                       pygame.Color("pink"), screen)
+                       self.font, self.text_color, self.button_color0, 
+                       self.button_color1, self.button_outline, screen)
         self.help_button = Button(350, 300, 200, 100, "HELP", 
-                       self.font, pygame.Color("blue"), pygame.Color("red"), 
-                       pygame.Color("pink"), screen)
+                       self.font, self.text_color, self.button_color0, 
+                       self.button_color1, self.button_outline, screen)
         self.quit_button = Button(350, 500, 200, 100, "QUIT", 
-                       self.font, pygame.Color("blue"), pygame.Color("red"), 
-                       pygame.Color("pink"), screen)
+                       self.font, self.text_color, self.button_color0, 
+                       self.button_color1, self.button_outline, screen)
 
         self.buttons.append(self.start_button)
         self.buttons.append(self.help_button)
