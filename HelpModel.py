@@ -16,8 +16,8 @@ class HelpModel(Model):
         body1 = "Welcome to 4-in-a-row! Your goal is to connect four of your"
         body2 = "checkers in a row while preventing your opponent from doing"
         body3 = "the same. First to get four in a row wins!"
-        body4 = "To place your checker, select the desired column."
-        body5 = "To undo/redo a move, use the controls at the top."
+        body4 = "To place your checker, click on the desired column."
+        body5 = "Make sure to get four in a row to win the game!"
         
         self.instructions_header = self.font.render(header, True, pygame.Color("blue"))
         self.i1 = p.render(body1, True, pygame.Color("black"))
@@ -37,7 +37,7 @@ class HelpModel(Model):
         screen.blit(self.i2, (140, 240))
         screen.blit(self.i3, (245, 280))
         screen.blit(self.i4, (200, 350))
-        screen.blit(self.i5, (200, 390))
+        screen.blit(self.i5, (217, 390))
         self.button.draw()
 
 
