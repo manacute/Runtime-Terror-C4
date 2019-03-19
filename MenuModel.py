@@ -14,6 +14,9 @@ class MenuModel(Model):
 
         screen.fill(pygame.Color("white"))
 
+        title_text = self.font.render("Four-In-A-Row", True, pygame.Color("black"))
+        screen.blit(title_text, (352, 30))
+
         #Creates the 3 interactive buttons
         self.start_button = Button(350, 100, 200, 100, "START", 
                        self.font, self.text_color, self.button_color0, 
