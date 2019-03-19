@@ -12,6 +12,12 @@ class BoardModel(Model):
         self._board = [[], [], [], [], [], [], []]
         self._moves = []
         self._winner = 0
+        self.reset_board()
+        
+    def reset_board(self):
+        self._board = [[], [], [], [], [], [], []]
+        self._moves = []
+        self._winner = 0
         j = 0
         while (j < 7):
             i = 0
@@ -19,10 +25,6 @@ class BoardModel(Model):
                 self._board[j].append(Piece(0)) #This represents an empty place on the board.
                 i += 1
             j += 1
-      #  self.reset_board
-        
-  #  def reset_board(self):
-
 
         
     def perform_move(self, m: Move) -> None:
@@ -78,7 +80,7 @@ class BoardModel(Model):
             if self._winner != 0:
                 self.next_model = "menu"
                 self.done = True
-         #       self.reset_board()
+                self.reset_board()
             else:
                 controller.perform_move(event)
             
