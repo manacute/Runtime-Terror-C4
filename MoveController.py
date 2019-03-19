@@ -29,9 +29,13 @@ class MoveController:
         possible_move = Move(column_index, row_index, current_player)
         if self.move_is_valid(possible_move):
             self._model.perform_move(possible_move)
+            print(self.board_is_full())
             if self.move_wins_game(possible_move):
                 print("Player " + str(self.get_current_player()) + " wins!")
                 self._model.game_over(self.get_current_player())
+            elif self.board_is_full():
+                print("Neither player wins!")
+                self._model.game_over(-1)
             else:
                 print("Current Move: Player " + (str) (self.get_current_player()))
             
@@ -40,7 +44,7 @@ class MoveController:
             # change the player a second time which will result in the same
             # player being prompted for a new move.
             self.get_next_player()
-            
+              
         
     def move_is_valid(self, move: Move) -> bool:
         '''
@@ -52,10 +56,7 @@ class MoveController:
         return move.get_y() != None and move.get_x() >= 0 and move.get_x() <= 6
 
     def move_wins_game(self, m: Move) -> bool:
-        '''
-        Pre: m is a move that has been made on the BoardModel
-        Post: Return True iff there are four tokens in a row of the same type in the BoardModel
-        '''
+        '''Return True iff there are four tokens in a row of the same type in the BoardModel'''
 
         x = m.get_x()
         y = m.get_y()
@@ -81,6 +82,13 @@ class MoveController:
                     displacement = (abs(displacement) + 1) * magnitude
         return False
             
+    def board_is_full(self) -> bool:  
+        '''Return True iff the board is filled with player tokens.''' 
+        for j in range(7):
+            for i in range(6):
+                  if self._model.get_board()[j][i].get_player() == 0:
+                      return False
+        return True
         
     def get_row_index(self, column_index):
         selected_column = self._model.get_board()[column_index]

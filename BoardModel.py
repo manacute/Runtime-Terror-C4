@@ -19,13 +19,10 @@ class BoardModel(Model):
         self._moves = []
         self._winner = 0
         j = 0
-        while (j < 7):
-            i = 0
-            while (i < 6):
+        for j in range(7):
+            for i in range(6):
                 self._board[j].append(Piece(0)) #This represents an empty place on the board.
-                i += 1
-            j += 1
-
+    
         
     def perform_move(self, m: Move) -> None:
         self.add_move(m)
@@ -48,7 +45,7 @@ class BoardModel(Model):
         # 42 equal circles arranged in 7 columns and 6 rows
         position = [150, 600]
         board = self.get_board()
-
+        
         for column in board:
             position[1] = 600
             for row in column:
@@ -61,10 +58,15 @@ class BoardModel(Model):
                      pygame.draw.circle(screen, pygame.Color("Red"), tuple(position), 40)
                 position[1] = position[1] - 100
             position[0] = position[0] + 100
-
+            
+        
         if self._winner != 0:
             font = pygame.font.SysFont('Arial', 40)
-            button = Button(250, 250, 400, 200, "Player " + str(self._winner) + " has won!", 
+            if self._winner == -1:
+                msg = "Stalemate! Nobody winss!"
+            else:
+                msg = "Player " + str(self._winner) + " has won!"
+            button = Button(250, 250, 400, 200, msg, 
                    font, self.text_color, self.button_color0, 
                    self.button_color0, self.button_outline, screen) 
             button.draw()
