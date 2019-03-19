@@ -29,8 +29,12 @@ class MoveController:
         possible_move = Move(column_index, row_index, current_player)
         if self.move_is_valid(possible_move):
             self._model.perform_move(possible_move)
-            print("Current Move: Player " + (str) (self.get_current_player()))
-                
+            if self.move_wins_game(possible_move):
+                print("Player " + str(self.get_current_player()) + " wins!")
+                self._model.game_over(self.get_current_player())
+            else:
+                print("Current Move: Player " + (str) (self.get_current_player()))
+            
         else:
             # In the case of an invalid move, we call this function to 
             # change the player a second time which will result in the same
@@ -74,9 +78,10 @@ class MoveController:
                             displacement = 3
                         if tokens == 4:
                             return True
-                    displacement = (abs(i) + 1) * magnitude
+                    displacement = (abs(displacement) + 1) * magnitude
         return False
             
+        
     def get_row_index(self, column_index):
         selected_column = self._model.get_board()[column_index]
         

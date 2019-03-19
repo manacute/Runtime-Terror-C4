@@ -7,9 +7,10 @@ class BoardModel(Model):
     def __init__(self):
         super(BoardModel, self).__init__()
         pygame.display.set_caption('4-in-a-row')
-
-        # Initialize our board in format self._board[column_position][row_position].
+        # Initialize our board in format self._board[column_position][row_position].  
         self._board = [[], [], [], [], [], [], []]
+        self._moves = []
+        self._winner = 0
         j = 0
         while (j < 7):
             i = 0
@@ -17,10 +18,12 @@ class BoardModel(Model):
                 self._board[j].append(Piece(0)) #This represents an empty place on the board.
                 i += 1
             j += 1
+      #  self.reset_board
+        
+  #  def reset_board(self):
 
-        self._moves = []
 
-
+        
     def perform_move(self, m: Move) -> None:
         self.add_move(m)
         self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
@@ -33,16 +36,10 @@ class BoardModel(Model):
 
     def draw(self, screen):
 
-        # Colour variables
-        BLUE = (0, 0, 255)
-        RED = (255, 0, 0)
-        WHITE = (255, 255, 255)
-        YELLOW = (255, 255, 0)
-
         # Making the background white
-        screen.fill(WHITE)
+        screen.fill(pygame.Color("white"))
         # Creating the blue background of the board
-        pygame.draw.rect(screen, BLUE,(100,50,700,600))
+        pygame.draw.rect(screen, pygame.Color("blue"),(100,50,700,600))
 
         # Creating the circles for the tokens on the board
         # 42 equal circles arranged in 7 columns and 6 rows
@@ -54,18 +51,27 @@ class BoardModel(Model):
             for row in column:
                 n = row.get_player()
                 if (n is 0):
-                    pygame.draw.circle(screen, WHITE, tuple(position), 40)
+                    pygame.draw.circle(screen, pygame.Color("white"), tuple(position), 40)
                 elif (n is 1):
-                     pygame.draw.circle(screen, YELLOW, tuple(position), 40)
+                     pygame.draw.circle(screen, pygame.Color("yellow"), tuple(position), 40)
                 else:
-                     pygame.draw.circle(screen, RED, tuple(position), 40)
+                     pygame.draw.circle(screen, pygame.Color("Red"), tuple(position), 40)
                 position[1] = position[1] - 100
             position[0] = position[0] + 100
 
+        if self._winner != 0:
+    def game_over(self, winning_player):
+        self._winner = winning_player
 
-    def get_event(self, event, screen, controller):
+    def get_event(self, event, controller):
         if event.type == pygame.QUIT:
             self.quit = True
             
-        elif event.type == pygame.MOUSEBUTTONDOWN and screen == "board":
-            controller.perform_move(event)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if self._winner != 0:
+                self.next_model = "menu"
+                self.done = True
+         #       self.reset_board()
+            else:
+                controller.perform_move(event)
+            
