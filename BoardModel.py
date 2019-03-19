@@ -6,6 +6,9 @@ from Button import Button
 
 class BoardModel(Model):
     def __init__(self):
+        '''
+        Creates a BoardModel object
+        '''
         super(BoardModel, self).__init__()
         pygame.display.set_caption('4-in-a-row')
         # Initialize our board in format self._board[column_position][row_position].
@@ -15,6 +18,9 @@ class BoardModel(Model):
         self.reset_board()
 
     def reset_board(self):
+        '''
+        Resets the BoardModel to default arrangement
+        '''
         self._board = [[], [], [], [], [], [], []]
         self._moves = []
         self._winner = 0
@@ -25,16 +31,30 @@ class BoardModel(Model):
 
 
     def perform_move(self, m: Move) -> None:
+        '''
+        Implements moves performed by player
+        '''
         self.add_move(m)
         self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
 
     def add_move(self, m: Move) -> None:
+        '''
+        Adds move to BoardModel's move list
+        '''
         self._moves.append(m)
 
     def get_board(self) -> list:
+        '''
+        Returns BoardModel's list representation of the board
+        '''
         return(self._board)
 
     def draw(self, screen):
+        '''
+        Draws the visual display of the game board on the game window.
+        The game board consists of a blue square and 42 circles arranged
+        in 7 columns and 6 rows.
+        '''
 
         # Making the background white
         screen.fill(pygame.Color("white"))
@@ -75,9 +95,16 @@ class BoardModel(Model):
             button.draw()
 
     def game_over(self, winning_player):
+        '''
+        Assigns the winner of the game, after it has been detected that the game
+        has been won
+        '''
         self._winner = winning_player
 
     def get_event(self, event, controller):
+        '''
+        Gets user defined event
+        '''
         if event.type == pygame.QUIT:
             self.quit = True
 
