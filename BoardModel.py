@@ -24,10 +24,9 @@ class BoardModel(Model):
     def perform_move(self, m: Move) -> None:
         self.add_move(m)
         self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
-        self.update()
 
     def add_move(self, m: Move) -> None:
-        self._moves.add(m)
+        self._moves.append(m)
 
     def get_board(self) -> list:
         return(self._board)
@@ -47,11 +46,11 @@ class BoardModel(Model):
 
         # Creating the circles for the tokens on the board
         # 42 equal circles arranged in 7 columns and 6 rows
-        position = [150, 100]
+        position = [150, 600]
         board = self.get_board()
 
         for column in board:
-            position[1] = 100
+            position[1] = 600
             for row in column:
                 n = row.get_player()
                 if (n is 0):
@@ -60,10 +59,13 @@ class BoardModel(Model):
                      pygame.draw.circle(screen, YELLOW, tuple(position), 40)
                 else:
                      pygame.draw.circle(screen, RED, tuple(position), 40)
-                position[1] = position[1] + 100
+                position[1] = position[1] - 100
             position[0] = position[0] + 100
 
 
-    def get_event(self, event):
+    def get_event(self, event, screen, controller):
         if event.type == pygame.QUIT:
             self.quit = True
+            
+        elif event.type == pygame.MOUSEBUTTONDOWN and screen == "board":
+            controller.perform_move(event)

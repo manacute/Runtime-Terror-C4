@@ -6,10 +6,38 @@ from BoardModel import BoardModel
 class MoveController:
     def __init__(self, model: BoardModel):
         self._model = model
+        self._current_player = 1 
+        # Prints initial message for player 1
+        print("Current Move: Player " + (str) (self.get_current_player()))
 
-    def perform_move(self, x: int) -> None:
-        self._model.perform_move(m)
+    def get_current_player(self):
+        return self._current_player
+    
+    def get_next_player(self):
+        if self._current_player == 1:
+            self._current_player = 2
+            return 1
+        elif self._current_player == 2:
+            self._current_player = 1
+            return 2
 
+    def perform_move(self, event) -> None:
+        x_position = event.pos[0]
+        column_index = (int) ((x_position // 100) - 1)
+        row_index = self.get_row_index(column_index)
+        current_player = self.get_next_player()
+        possible_move = Move(column_index, row_index, current_player)
+        if self.move_is_valid(possible_move):
+            self._model.perform_move(possible_move)
+            print("Current Move: Player " + (str) (self.get_current_player()))
+                
+        else:
+            # In the case of an invalid move, we call this function to 
+            # change the player a second time which will result in the same
+            # player being prompted for a new move.
+            self.get_next_player()
+            
+        
     def move_is_valid(self, move: Move) -> bool:
         '''
         This function takes in a move object and then checks if it is valid.
@@ -17,25 +45,7 @@ class MoveController:
         Pre: move is a valid move object and self is a valid board.
         Post: bool
         '''
-
-        # To check if the move is valid we have to check if that space is empty
-        # The board is stored as a nested list with 7 sublists each 6 ints large
-        # An empty location is represented by 0
-        # Each sublist is a column
-        # A board has 7 columns (y) and 6 rows (x)
-
-        # First check that the coordinates are valid
-        x = move.get_x
-        y = move.get_y
-        if ( (x > 5) or (x < 0) or (y > 6) or (y < 0) ):
-            return False
-
-        # Check that location is empty - the column should have space
-        if (self._model[move.get_y-1][5] == 0):
-            return True
-
-        # Otherwise return False
-        return False
+        return move.get_y() != None and move.get_x() >= 0 and move.get_x() <= 6
 
     def move_wins_game(self, m: Move) -> bool:
         '''
@@ -66,4 +76,16 @@ class MoveController:
                             return True
                     displacement = (abs(i) + 1) * magnitude
         return False
-
+            
+    def get_row_index(self, column_index):
+        selected_column = self._model.get_board()[column_index]
+        
+        i = 0
+        while i < len(selected_column):
+            if selected_column[i].is_empty():
+                return i
+            i += 1
+            
+        # In case that there is no empty slot, we return "None" which we use as
+        # a indication later in our check if the move is invalid.
+        return None

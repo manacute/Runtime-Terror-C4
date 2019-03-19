@@ -21,10 +21,14 @@ class Game():
         self.model_name = model_name
         self.model = screens[self.model_name]
         self.clock = pygame.time.Clock()
+        self.controller = MoveController(screens["board"])
         
     def event_loop(self):
         for event in pygame.event.get():
-            self.model.get_event(event)
+            if self.model_name == "board":
+                self.model.get_event(event, self.model_name, self.controller)
+            else:
+                self.model.get_event(event)
             
     def draw(self):
         self.model.draw(self.screen)
@@ -48,6 +52,7 @@ class Game():
             self.update(frame_time)
             self.draw()
             pygame.display.update()
+            
 
 
 if __name__ == '__main__':
