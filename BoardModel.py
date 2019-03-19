@@ -113,5 +113,5 @@ class BoardModel(Model):
                 self.next_model = "menu"
                 self.done = True
                 self.reset_board()
-            else:
+            elif event.pos[0] >= 100 and event.pos[0] < 800:   
                 controller.perform_move(event)
