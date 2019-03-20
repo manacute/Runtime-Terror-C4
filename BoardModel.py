@@ -11,6 +11,9 @@ class BoardModel(Model):
         '''
         super(BoardModel, self).__init__()
         pygame.display.set_caption('4-in-a-row')
+        pygame.mixer.init()
+        self._drop = pygame.mixer.Sound(file="sound/drop.wav")
+        
         # Initialize our board in format self._board[column_position][row_position].
         self._board = [[], [], [], [], [], [], []]
         self._moves = []
@@ -27,15 +30,16 @@ class BoardModel(Model):
         j = 0
         for j in range(7):
             for i in range(6):
-                self._board[j].append(Piece(0)) #This represents an empty place on the board.
-
+                self._board[j].append(Piece(0)) #This represents an empty place on the board.0
 
     def perform_move(self, m: Move) -> None:
         '''
         Implements moves performed by player
         '''
+        self._drop.play()
         self.add_move(m)
         self._board[m.get_x()][m.get_y()] = Piece(m.get_player())
+
 
     def add_move(self, m: Move) -> None:
         '''
@@ -89,6 +93,7 @@ class BoardModel(Model):
                     msg = "Player 2 has won!"
                 else:
                     msg = "Player 1 has won!"
+
             button = Button(250, 250, 400, 200, msg,
                    font, self.text_color, self.button_color0,
                    self.button_color0, self.button_outline, screen)
@@ -100,6 +105,11 @@ class BoardModel(Model):
         has been won
         '''
         self._winner = winning_player
+        if self._winner == -1:
+            pygame.mixer.music.load('sound/failure.mp3')
+        else:
+            pygame.mixer.music.load('sound/victory.mp3')
+        pygame.mixer.music.play(0)
 
     def get_event(self, event, controller):
         '''

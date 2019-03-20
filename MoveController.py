@@ -29,7 +29,6 @@ class MoveController:
         possible_move = Move(column_index, row_index, current_player)
         if self.move_is_valid(possible_move):
             self._model.perform_move(possible_move)
-            print(self.board_is_full())
             if self.move_wins_game(possible_move):
                 print("Player " + str(self.get_current_player()) + " wins!")
                 self._model.game_over(self.get_current_player())
