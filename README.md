@@ -9,7 +9,6 @@ An adaptation of the famed board game Connect-4
 	- Controls
 - Installation
 	- For Windows
-	- For Linux based systems
 	- For MAC OS X
 - Contributing
 	- Contributors
@@ -31,8 +30,46 @@ A four-in-a-row can be made horizontally, vertically, or diagonally, and do not 
 ![Winning Game](https://user-images.githubusercontent.com/47199055/54682649-e4e9bb00-4ae5-11e9-9989-d1f5cc5a7eb6.PNG)
 ![Stalemate](https://user-images.githubusercontent.com/47199055/54682651-e5825180-4ae5-11e9-806c-db24d395d268.PNG)
 
-##License
-Copyright 2018 Peter Del Fatti, Maximilian Huang, Kim Thien Le, Amit Ohm, Syeda Sani-e Zehra
+## Game Features
+- Custom Sounds for placing counter, winning, stalemate and reverting a move
+- Undo ability to revert a move
+
+### Controls
+Use the `mouse` to navigate the game interface and play the game.
+
+## Installation
+To play 4-in-a-row, you must have Python and Pygame installed.
+
+### For Windows
+Download the folder of the repo (all files must be present). Once that is
+done open the folder and double-click the 'main.py' file to play.
+Happy Playing!
+
+### For Mac OS X
+Download the folder, open main.py and run the module in python.
+
+## Contributing
+### Contibutors
+- Amit Ohm
+- Maxmilian Huang
+- Kim Thien Le
+- Peter Del Fatti
+- Syeda Sani-e-Zehra
+
+### To-do
+- [x] Create Main Menu
+- [x] Create Help Menu
+- [x] Create Undo Feature
+- [x] Add Sound Effects to dropping and removing tokens
+- [x] Add Sound Effects for winning game and stalemate
+- [ ] Create Player vs computer mode (Virtual player)
+- [ ] Add backgrund music
+- [ ] Add option to reset game mid-play
+- [ ] Add option to go to menu mid-play
+
+
+## License
+Copyright 2019 Peter Del Fatti, Maximilian Huang, Kim Thien Le, Amit Ohm, Syeda Sani-e-Zehra
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
