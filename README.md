@@ -48,7 +48,7 @@ Happy Playing!
 Download the folder, open main.py and run the module in python.
 
 ## Contributing
-### Contibutors
+### Contributors
 - Amit Ohm
 - Maxmilian Huang
 - Kim Thien Le
