@@ -52,6 +52,11 @@ class BoardModel(Model):
         Returns BoardModel's list representation of the board
         '''
         return(self._board)
+    
+    def undo_move(self) -> None:
+        '''Undo the most recently stored move.'''
+        m = self._moves.pop()
+        self._board[m.get_x()][m.get_y()] = Piece(0)
 
     def draw(self, screen):
         '''
@@ -83,21 +88,26 @@ class BoardModel(Model):
                 position[1] = position[1] - 100
             position[0] = position[0] + 100
 
-
+        font = pygame.font.SysFont('Arial', 40)
+        self._undo_button = Button(810, 600, 80, 40, "Undo", 
+            font, self.text_color, self.button_color0, 
+            self.button_color1, self.button_outline, screen)
+        if self._moves:
+            self._undo_button.draw()
+        
         if self._winner != 0:
-            font = pygame.font.SysFont('Arial', 40)
             if self._winner == -1:
                 msg = "Stalemate! Nobody wins!"
             else:
                 if self._winner is 1:
-                    msg = "Player 2 has won!"
-                else:
                     msg = "Player 1 has won!"
+                else:
+                    msg = "Player 2 has won!"
 
-            button = Button(250, 250, 400, 200, msg,
+            win_msg = Button(250, 250, 400, 200, msg,
                    font, self.text_color, self.button_color0,
                    self.button_color0, self.button_outline, screen)
-            button.draw()
+            win_msg.draw()
 
     def game_over(self, winning_player):
         '''
@@ -119,7 +129,9 @@ class BoardModel(Model):
             self.quit = True
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if self._winner != 0:
+            if self._undo_button.mouse_over() and self._moves:
+                self.undo_move()
+            elif self._winner != 0:
                 self.next_model = "menu"
                 self.done = True
                 self.reset_board()

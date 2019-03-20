@@ -16,17 +16,16 @@ class MoveController:
     def get_next_player(self):
         if self._current_player == 1:
             self._current_player = 2
-            return 1
+            return 2
         elif self._current_player == 2:
             self._current_player = 1
-            return 2
+            return 1
 
     def perform_move(self, event) -> None:
         x_position = event.pos[0]
         column_index = (int) ((x_position // 100) - 1)
         row_index = self.get_row_index(column_index)
-        current_player = self.get_next_player()
-        possible_move = Move(column_index, row_index, current_player)
+        possible_move = Move(column_index, row_index, self.get_current_player())
         if self.move_is_valid(possible_move):
             self._model.perform_move(possible_move)
             if self.move_wins_game(possible_move):
@@ -36,13 +35,8 @@ class MoveController:
                 print("Neither player wins!")
                 self._model.game_over(-1)
             else:
-                print("Current Move: Player " + (str) (self.get_current_player()))
+                print("Current Move: Player " + (str) (self.get_next_player()))
             
-        else:
-            # In the case of an invalid move, we call this function to 
-            # change the player a second time which will result in the same
-            # player being prompted for a new move.
-            self.get_next_player()
               
         
     def move_is_valid(self, move: Move) -> bool:
