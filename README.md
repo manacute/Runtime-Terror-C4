@@ -26,11 +26,10 @@ A four-in-a-row can be made horizontally, vertically, or diagonally, and do not 
 ### Screenshots
 ![Main Menu](https://user-images.githubusercontent.com/47199055/54650981-2ac36680-4a87-11e9-92e1-a6bf399dcb3c.PNG)
 ![Help Menu](https://user-images.githubusercontent.com/47199055/54650984-2c8d2a00-4a87-11e9-8f3c-a41f28b22fa3.PNG)
-![New Game](https://user-images.githubusercontent.com/47199055/54650986-2dbe5700-4a87-11e9-9b7a-856b7d5803bd.PNG)
-![Mid Game](https://user-images.githubusercontent.com/47199055/54650987-2eef8400-4a87-11e9-8534-9959c8152633.PNG)
-![Winning Game](https://user-images.githubusercontent.com/47199055/54650992-3020b100-4a87-11e9-879b-70d39fc3854e.PNG)
-![Stalemate](https://user-images.githubusercontent.com/47199055/54650993-30b94780-4a87-11e9-830d-5c7ccb030150.PNG)
-
+![New Game](https://user-images.githubusercontent.com/47199055/54682643-e1eeca80-4ae5-11e9-87ee-6a297da0bc95.PNG)
+![Mid Game](https://user-images.githubusercontent.com/47199055/54682646-e2876100-4ae5-11e9-8cda-35d313580333.PNG)
+![Winning Game](https://user-images.githubusercontent.com/47199055/54682649-e4e9bb00-4ae5-11e9-9989-d1f5cc5a7eb6.PNG)
+![Stalemate](https://user-images.githubusercontent.com/47199055/54682651-e5825180-4ae5-11e9-806c-db24d395d268.PNG)
 
 ##License
 Copyright 2018 Peter Del Fatti, Maximilian Huang, Kim Thien Le, Amit Ohm, Syeda Sani-e Zehra
