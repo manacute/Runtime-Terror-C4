@@ -31,3 +31,18 @@ A four-in-a-row can be made horizontally, vertically, or diagonally, and do not 
 ![Winning Game](https://user-images.githubusercontent.com/47199055/54650992-3020b100-4a87-11e9-879b-70d39fc3854e.PNG)
 ![Stalemate](https://user-images.githubusercontent.com/47199055/54650993-30b94780-4a87-11e9-830d-5c7ccb030150.PNG)
 
+
+##License
+Copyright 2018 Peter Del Fatti, Maximilian Huang, Kim Thien Le, Amit Ohm, Syeda Sani-e Zehra
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
