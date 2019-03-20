@@ -2,19 +2,18 @@
 An adaptation of the famed board game Connect-4
 
 ## Index
-- About the game
-- Demo
-	- Screenshots
-- Game Features
-	- Controls
-- Installation
-	- For Windows
-	- For MAC OS X
-- Contributing
-	- Contributors
-	- To-do
-- Issues
-- License
+- [About the game](README.md)
+- [Demo](README.md)
+	- [Screenshots](README.md)
+- [Game Features](README.md)
+	- [Controls](README.md)
+- [Installation](README.md)
+	- [For Windows](README.md)
+	- [For MAC OS X](README.md)
+- [Contributing](README.md)
+	- [Contributors](README.md)
+	- [To-do](README.md)
+- [License](README.md)
 
 ## About the game
 4-in-a-row is a game played on a board with 7 columns and 6 rows of slots, where two players take turns placing coloured tokens into the board. The first player to get at least 4 consecutive tokens of their colour in a row wins the game.
