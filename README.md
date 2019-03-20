@@ -1,5 +1,23 @@
-# Runtime-Terror-C4
-It's connect four, not the plastic explosive.
+# Connect 4
+
+## Index
+- Demo
+	- Screenshots
+- Game Features
+	- Controls
+- Installation
+	- For Windows
+	- For Linux based systems
+	- For MAC OS X
+- Contributing
+	- Contributors
+	- To-do
+- Issues
+- License
+
+## Demo
+	### Screenshots
+	
 
 Connect Four is a game played on a board with 7 columns and 6 rows of slots, where two players take turns placing tokens into the board. The goal is to create a series of four of your tokens in a row, with no empty slots in between them. This is also called a four-in-a-row.
 
