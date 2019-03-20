@@ -2,18 +2,18 @@
 An adaptation of the famed board game Connect-4
 
 ## Index
-- [About the game](README.md)
-- [Demo](README.md)
-	- [Screenshots](README.md)
-- [Game Features](README.md)
-	- [Controls](README.md)
-- [Installation](README.md)
-	- [For Windows](README.md)
-	- [For MAC OS X](README.md)
-- [Contributing](README.md)
-	- [Contributors](README.md)
-	- [To-do](README.md)
-- [License](README.md)
+- [About the game](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#about-the-game)
+- [Demo](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#demo)
+	- [Screenshots](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#screenshots)
+- [Game Features](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#game-features)
+	- [Controls](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#controls)
+- [Installation](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#installation)
+	- [For Windows](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#for-windows)
+	- [For MAC OS X](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#for-mac-os-x)
+- [Contributing](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#contributing)
+	- [Contributors](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#contributors)
+	- [To-do](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#to-do)
+- [License](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#license)
 
 ## About the game
 4-in-a-row is a game played on a board with 7 columns and 6 rows of slots, where two players take turns placing coloured tokens into the board. The first player to get at least 4 consecutive tokens of their colour in a row wins the game.
