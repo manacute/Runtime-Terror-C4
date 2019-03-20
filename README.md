@@ -62,7 +62,7 @@ Download the folder, open main.py and run the module in python.
 - [x] Add Sound Effects to dropping and removing tokens
 - [x] Add Sound Effects for winning game and stalemate
 - [ ] Create Player vs computer mode (Virtual player)
-- [ ] Add backgrund music
+- [ ] Add background music
 - [ ] Add option to reset game mid-play
 - [ ] Add option to go to menu mid-play
 
