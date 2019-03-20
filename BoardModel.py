@@ -13,6 +13,7 @@ class BoardModel(Model):
         pygame.display.set_caption('4-in-a-row')
         pygame.mixer.init()
         self._drop = pygame.mixer.Sound(file="sound/drop.wav")
+        self._undo = pygame.mixer.Sound(file="sound/undo.wav")
         
         # Initialize our board in format self._board[column_position][row_position].
         self._board = [[], [], [], [], [], [], []]
@@ -55,6 +56,7 @@ class BoardModel(Model):
     
     def undo_move(self) -> None:
         '''Undo the most recently stored move.'''
+        self._undo.play()
         m = self._moves.pop()
         self._board[m.get_x()][m.get_y()] = Piece(0)
 
