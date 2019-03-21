@@ -13,7 +13,8 @@ class MoveController:
     def get_current_player(self):
         return self._current_player
     
-    def get_next_player(self):
+    def get_next_player(self) -> int:
+        '''Change current player then return player number.'''
         if self._current_player == 1:
             self._current_player = 2
             return 2
@@ -22,6 +23,12 @@ class MoveController:
             return 1
 
     def perform_move(self, event) -> None:
+        '''
+        Perform move iff the move is valid (i.e. in a
+        non-full column, not outside of the board). 
+        Afterwards, check if a player has won, or if
+        the board is filled up. Else, switch players.
+        '''
         x_position = event.pos[0]
         column_index = (int) ((x_position // 100) - 1)
         row_index = self.get_row_index(column_index)
@@ -49,7 +56,10 @@ class MoveController:
         return move.get_y() != None and move.get_x() >= 0 and move.get_x() <= 6
 
     def move_wins_game(self, m: Move) -> bool:
-        '''Return True iff there are four tokens in a row of the same type in the BoardModel'''
+        '''
+        Return True iff there are four tokens in 
+        a row of the same type in the BoardModel
+        '''
 
         x = m.get_x()
         y = m.get_y()
@@ -84,6 +94,7 @@ class MoveController:
         return True
         
     def get_row_index(self, column_index):
+        '''Return index of highest empty slot for a given column.'''
         selected_column = self._model.get_board()[column_index]
         
         i = 0

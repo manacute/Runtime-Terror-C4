@@ -64,7 +64,6 @@ class Game():
             self.playing = False
         elif self.model.done:
             self.change_screen()
-        self.model.update(frame_time)
 
     def change_screen(self):
         '''Change the model being used according to next_model.'''

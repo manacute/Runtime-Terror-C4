@@ -15,12 +15,11 @@ class Model():
         self.button_color1 = pygame.Color("grey")
         self.button_outline = pygame.Color("black")
         
-    def update(self, frame_time):
-        pass
-        
     def get_event(self, event):
+        '''Receive and handle events.'''
         pass
     
     def draw(self, display):
+        '''Draw onto the screen.'''
         pass
     
