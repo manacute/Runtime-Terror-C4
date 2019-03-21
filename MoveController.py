@@ -5,14 +5,17 @@ from BoardModel import BoardModel
 
 class MoveController:
     def __init__(self, model: BoardModel):
+        '''
+        Creates a move controller object.
+        '''
         self._model = model
-        self._current_player = 1 
+        self._current_player = 1
         # Prints initial message for player 1
         print("Current Move: Player " + (str) (self.get_current_player()))
 
     def get_current_player(self):
         return self._current_player
-    
+
     def get_next_player(self) -> int:
         '''Change current player then return player number.'''
         if self._current_player == 1:
@@ -25,7 +28,7 @@ class MoveController:
     def perform_move(self, event) -> None:
         '''
         Perform move iff the move is valid (i.e. in a
-        non-full column, not outside of the board). 
+        non-full column, not outside of the board).
         Afterwards, check if a player has won, or if
         the board is filled up. Else, switch players.
         '''
@@ -43,9 +46,9 @@ class MoveController:
                 self._model.game_over(-1)
             else:
                 print("Current Move: Player " + (str) (self.get_next_player()))
-            
-              
-        
+
+
+
     def move_is_valid(self, move: Move) -> bool:
         '''
         This function takes in a move object and then checks if it is valid.
@@ -57,7 +60,7 @@ class MoveController:
 
     def move_wins_game(self, m: Move) -> bool:
         '''
-        Return True iff there are four tokens in 
+        Return True iff there are four tokens in
         a row of the same type in the BoardModel
         '''
 
@@ -84,25 +87,25 @@ class MoveController:
                             return True
                     displacement = (abs(displacement) + 1) * magnitude
         return False
-            
-    def board_is_full(self) -> bool:  
-        '''Return True iff the board is filled with player tokens.''' 
+
+    def board_is_full(self) -> bool:
+        '''Return True iff the board is filled with player tokens.'''
         for j in range(7):
             for i in range(6):
                   if self._model.get_board()[j][i].get_player() == 0:
                       return False
         return True
-        
+
     def get_row_index(self, column_index):
         '''Return index of highest empty slot for a given column.'''
         selected_column = self._model.get_board()[column_index]
-        
+
         i = 0
         while i < len(selected_column):
             if selected_column[i].is_empty():
                 return i
             i += 1
-            
+
         # In case that there is no empty slot, we return "None" which we use as
         # a indication later in our check if the move is invalid.
         return None
