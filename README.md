@@ -37,15 +37,15 @@ A four-in-a-row can be made horizontally, vertically, or diagonally, and do not 
 Use the `mouse` to navigate the game interface and play the game.
 
 ## Installation
-To play 4-in-a-row, you must have Python and Pygame installed.
+To play 4-in-a-row, you must have `Python` and `Pygame` installed.
 
 ### For Windows
 Download the folder of the repo (all files must be present). Once that is
-done open the folder and double-click the 'main.py' file to play.
+done open the folder and double-click the `main.py` file to play.
 Happy Playing!
 
 ### For Mac OS X
-Download the folder, open main.py and run the module in python.
+Download the folder, open `main.py` and run the module in `python`.
 
 ## Contributing
 ### Contributors
