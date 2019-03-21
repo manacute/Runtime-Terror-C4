@@ -22,6 +22,9 @@ A four-in-a-row can be made horizontally, vertically, or diagonally, and do not 
 
 ## Demo
 ### Screenshots
+[![YOUTUBE VIDEO](http://img.youtube.com/vi/UGfckFgUP9U/0.jpg)](http://www.youtube.com/watch?v=UGfckFgUP9U)
+
+
 ![Main Menu](https://user-images.githubusercontent.com/47199055/54650981-2ac36680-4a87-11e9-92e1-a6bf399dcb3c.PNG)
 ![Help Menu](https://user-images.githubusercontent.com/47199055/54650984-2c8d2a00-4a87-11e9-8f3c-a41f28b22fa3.PNG)
 ![New Game](https://user-images.githubusercontent.com/47199055/54682643-e1eeca80-4ae5-11e9-87ee-6a297da0bc95.PNG)
