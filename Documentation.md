@@ -6,6 +6,9 @@
 - [Extending the Game](https://github.com/manacute/Runtime-Terror-C4/blob/master/Documentation.md#extending-the-game)
 
 ## Directory Structure
+- `.idea` contains PyCharm's project-specific settings files.
+- `Screenshots` contains the screenshot images of the game.
+- `sound` contains the audio files used in the game.
 
 
 ## Classes and Functions
@@ -48,3 +51,9 @@ In the event that the players wish to access the menu mid-play, we must implemen
 In the menu, we must create a button to return to the game. Upon clicking this button, return to the game board, but not reset the board.
 
 ### Player vs Computer mode
+To implement a player vs computer game mode, we must first create 'Single Player' and 'Two-Player' buttons on the main menu. We would have a `mode` variable that keeps track of the game mode selected by the player.
+If `mode = 'player'`, then we would play the game as is.
+If `mode = 'computer'`, then we would make some changes to the behaviour of `_current_player = 2`.
+- Once the player finishes making their move, then the game switches over to the computer's turn.
+- For the computer's turn, we would implement a move at a random position on the game board.
+- After applying the necessary checks, such as `move_is_valid(move)`, we would then switch the player number back to the user, if the game isn't finished.
