@@ -133,6 +133,7 @@ class BoardModel(Model):
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if self._undo_button.mouse_over() and self._moves:
                 self.undo_move()
+                controller.get_next_player()
             elif self._winner != 0:
                 self.next_model = "menu"
                 self.done = True
