@@ -1,5 +1,5 @@
 # 4-in-a-row
-An adaptation of the famed board game Connect-4
+An adaptation of the famed board game Connect-4.
 
 ## Index
 - [About the game](https://github.com/manacute/Runtime-Terror-C4/blob/master/README.md#about-the-game)
@@ -30,8 +30,8 @@ A four-in-a-row can be made horizontally, vertically, or diagonally, and do not 
 ![Stalemate](https://user-images.githubusercontent.com/47199055/54682651-e5825180-4ae5-11e9-806c-db24d395d268.PNG)
 
 ## Game Features
-- Custom Sounds for placing counter, winning, stalemate and reverting a move
-- Undo ability to revert a move
+- Custom Sounds for placing counter, winning, stalemate and reverting a move.
+- Undo ability to revert a move.
 
 ### Controls
 Use the `mouse` to navigate the game interface and play the game.
@@ -39,12 +39,12 @@ Use the `mouse` to navigate the game interface and play the game.
 ## Installation
 To play 4-in-a-row, you must have `Python` and `Pygame` installed.
 
-### For Windows
+### For `Windows`
 Download the folder of the repo (all files must be present). Once that is
 done open the folder and double-click the `main.py` file to play.
 Happy Playing!
 
-### For Mac OS X
+### For `Mac OS X`
 Download the folder, open `main.py` and run the module in `python`.
 
 ## Contributing
