@@ -21,9 +21,10 @@ An adaptation of the famed board game Connect-4.
 A four-in-a-row can be made horizontally, vertically, or diagonally, and do not wrap around the edges of the board. Tokens are dropped down a column onto the board, and can stack on top of each other. If a column has all 6 slots filled, you cannot place another token on top. The game ends if one of the players is able to make a four-in-a-row or the entire board gets filled (resulting in a stalemate).
 
 ## Demo
-### Screenshots
+
 [![YOUTUBE VIDEO](http://img.youtube.com/vi/UGfckFgUP9U/0.jpg)](http://www.youtube.com/watch?v=UGfckFgUP9U)
 
+### Screenshots
 
 ![Main Menu](https://user-images.githubusercontent.com/47199055/54650981-2ac36680-4a87-11e9-92e1-a6bf399dcb3c.PNG)
 ![Help Menu](https://user-images.githubusercontent.com/47199055/54650984-2c8d2a00-4a87-11e9-8f3c-a41f28b22fa3.PNG)
